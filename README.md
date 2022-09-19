@@ -1,1 +1,1 @@
-# the-dinosaur-game
+# The Dinosaur Game
