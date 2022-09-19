@@ -1,31 +1,32 @@
 const dino = document.getElementById("dino");
 const cactus = document.getElementById("cactus");
+
 function jump() {
-    if (dispatchEvent.classList != "jump") {
-        //first it checks if the dino is mid-jump. If not, it makes it jump.
-        dino.classList.add("jump");
-        setTimeout(function () {
-            dino.classList.remove("jump");
-            //removes the jump class from the dino once it has jumped so that it can jump again
-        }, 300);
-    }
+  if (dino.classList != "jump") {
+    dino.classList.add("jump");
+
+    setTimeout(function () {
+      dino.classList.remove("jump");
+    }, 300);
+  }
 }
-let checkAlive = setInterval(function () {
-    let dinoTop = parseInt(
-        window.getComputedStyle(dino).getPropertyValue("top")
-    );
-    let cactusLeft = parseInt(
-        window.getComputedStyle(cactus).getPropertyValue("left")
-    );
-    //check for collision
-    if (cactusLeft > 0 && cactusLeft < 70 && dinoTop >= 143) {
-        dino.style.animationPlayState = "paused";
-        cactus.style.animationPlayState = "paused";
-        alert("Whoops! Game Over :(");
-        window.location.reload();
-    }
+
+let isAlive = setInterval(function () {
+  // get current dino Y position
+  let dinoTop = parseInt(window.getComputedStyle(dino).getPropertyValue("top"));
+
+  // get current cactus X position
+  let cactusLeft = parseInt(
+    window.getComputedStyle(cactus).getPropertyValue("left")
+  );
+
+  // detect collision
+  if (cactusLeft < 50 && cactusLeft > 0 && dinoTop >= 140) {
+    // collision
+    alert("Game Over!");
+  }
 }, 10);
+
 document.addEventListener("keydown", function (event) {
-    jump();
+  jump();
 });
-<b style="color: #262626; font-family: Poppins; font-size: x-large;"></b>
